@@ -10,22 +10,21 @@
 
 int main(int argc, char **argv)
 {
-    char *opt = argv[1];
+    char *hexstring = argv[1];
 
     int id;
     int fh;
     bdaddr_t btaddr;
     char pszaddr[18];
  
+    // 0x280404 - Headset Profile
     unsigned int cls = 0x000000;
     int timeout = 1000;
  
     printf("this example should be run as root\n");
 
-    if (opt == NULL || !strcmp(opt, "0x000000"))
-        cls = 0x000000;
-    else if(!strcmp(opt, "0x280404")) // Headset Profile
-        cls = 0x280404;
+    if (hexstring != NULL)
+	cls = (unsigned int)strtol(hexstring, NULL, 0);
  
     // get the device ID
     if ((id = hci_get_route(NULL)) < 0)
