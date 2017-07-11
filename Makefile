@@ -6,6 +6,8 @@
 # .cxx or .cpp replaced by .o
 # Be *** SURE *** to put the .o files here rather than the source files
 
+SETCLASS = setclass.o
+DISCOVERABLE = discoverable.o
 CONNECT = connect.o
 
 #------------ no need to change between these lines -------------------
@@ -27,6 +29,16 @@ LDFLAGS=-l bluetooth -l asound `pkg-config --libs glib-2.0 --libs dbus-1`
 # describe how to create the targets - often there will be only one target
 
 all: connect
+
+setclass: $(SETCLASS)
+	@echo "########################################################################################"
+	@echo "Building setclass ..."
+	$(CC) $(SETCLASS) -o setclass $(CFLAGS) $(LDFLAGS)
+
+discoverable: $(DISCOVERABLE)
+	@echo "########################################################################################"
+	@echo "Building discoverable ..."
+	$(CC) $(DISCOVERABLE) -o discoverable $(CFLAGS) $(LDFLAGS)
 
 connect: $(CONNECT)
 	@echo "########################################################################################"
