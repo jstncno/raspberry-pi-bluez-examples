@@ -11,7 +11,7 @@ int main(int argc, char **argv) {
     char* path_without_btaddr = "/org/bluez/hci0/dev_";
 
     char* path;
-    path = malloc(strlen(path_without_btaddr)+strlen(btaddr)); 
+    path = malloc(strlen(path_without_btaddr)+1+strlen(btaddr));
     strcpy(path, path_without_btaddr);
     strcat(path, btaddr);
 
